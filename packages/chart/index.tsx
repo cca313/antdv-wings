@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-11-30 16:57:23
  * @LastEditors: Gavin
- * @LastEditTime: 2021-11-30 20:20:43
+ * @LastEditTime: 2021-12-01 11:44:33
  * @FilePath: \wings\packages\chart\index.tsx
  * @Descriptions: todo
  */
@@ -12,15 +12,12 @@ const chartProps = {};
 
 const Chart = defineComponent({
   name: "chart",
-
   props: chartProps,
   setup() {
-  chickChart() {
+    const chickChart = () => {
       alert("chickChart");
-      }
-  return <div onClick={chickChart}>Chart</div>;
-  }
-
+    };
+    return <div onClick={chickChart}>Chart</div>;
   },
 });
 

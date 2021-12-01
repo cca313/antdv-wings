@@ -5,3 +5,6 @@
 - [ ] tsx 语法支持测试
 - [ ] 文档配置
 - [ ] 文档实例
+- [ ] pnpm only allow
+- [ ] husky & commit hook
+- [ ] rollup prod build
