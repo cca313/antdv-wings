@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "dependencies": {
     "ant-design-vue": "^3.0.0-alpha.13",
@@ -24,6 +26,7 @@
     "@vue/compiler-sfc": "^3.0.5",
     "@vue/eslint-config-standard": "~6.1.0",
     "@vue/eslint-config-typescript": "~7.0.0",
+    "@vuepress/bundler-vite": "^2.0.0-beta.27",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.24.1",
     "eslint-plugin-vue": "~7.16.0",
@@ -31,10 +34,12 @@
     "prettier": "^2.3.2",
     "typescript": "^4.3.2",
     "vite": "^2.5.1",
-    "vue-tsc": "^0.2.2"
+    "vue-tsc": "^0.2.2",
+    "vuepress": "^2.0.0-beta.27"
   },
   "peerDependencies": {
     "ant-design-vue": "^3.0.0-alpha.13",
     "vue": "^3.2.23"
-  }
+  },
+  "readme": "./docs/index.md"
 }
