@@ -2,8 +2,8 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-01 23:21:46
- * @FilePath: \vue-component-template\examples\App.vue
+ * @LastEditTime: 2021-12-02 11:41:14
+ * @FilePath: \wings\examples\App.vue
  * @Descriptions: todo
 -->
 <script setup lang="ts">
@@ -13,7 +13,8 @@
 
 <template>
   <div>321</div>
-  <custom />
+  <aw-button>321</aw-button>
+  <aw-table></aw-table>
 </template>
 
 <style>

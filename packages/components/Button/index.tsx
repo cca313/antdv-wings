@@ -1,19 +1,19 @@
 /*
  * @Author: Gavin Chan
- * @Date: 2021-12-01 20:54:06
+ * @Date: 2021-12-02 10:58:59
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-01 23:19:46
- * @FilePath: \vue-component-template\packages\index.tsx
+ * @LastEditTime: 2021-12-02 11:17:34
+ * @FilePath: \wings\packages\components\Button\index.tsx
  * @Descriptions: todo
  */
 import { defineComponent, DefineComponent, Plugin } from 'vue';
-import ComponentUtil from './utils/ComponentUtil';
+import ComponentUtil from '../../utils/ComponentUtil';
 import Button from 'ant-design-vue/es/button';
 import 'ant-design-vue/es/button/style/index';
 
-export default ComponentUtil.withInstall(
+const AWButton = ComponentUtil.withInstall(
   defineComponent({
-    name: 'custom',
+    name: 'aw-button',
     setup() {
       return () => (
         <div>
@@ -28,3 +28,5 @@ export default ComponentUtil.withInstall(
     }
   })
 );
+
+export default AWButton;

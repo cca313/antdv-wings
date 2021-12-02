@@ -1,8 +1,9 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import Custom from '../packages';
+import { AWButton, AWTable } from '../packages';
 
 const app = createApp(App);
-app.use(Custom);
+app.use(AWButton);
+app.use(AWTable);
 
 app.mount('#app');
