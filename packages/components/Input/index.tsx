@@ -2,67 +2,79 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-03 08:59:23
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-03 14:27:56
- * @FilePath: \wings\packages\components\Input\index.tsx
+ * @LastEditTime: 2021-12-05 23:21:45
+ * @FilePath: \antdv-wings\packages\components\Input\index.tsx
  * @Descriptions: todo
  */
-import { defineComponent, Plugin, render } from 'vue';
+import { defineComponent, h } from 'vue';
 import ComponentUtil from '../../utils/ComponentUtil';
-import Input from 'ant-design-vue/es/input';
-import FormItem from 'ant-design-vue/es/form/FormItem';
+import AInput from 'ant-design-vue/es/input';
 import InputProps from 'ant-design-vue/es/input/inputProps';
-import { Field, connect, mapProps } from '@formily/vue';
+import { connect, Field, mapProps, mapReadPretty } from '@formily/vue';
+import FormItem from '../FormItem';
 
 import 'ant-design-vue/es/input/style';
+import { PreviewText } from '../Preview-Text';
 
 const AWInputProps = Object.assign({}, InputProps, {
-  label: String
+  label: String,
+  rules: Array || Object
 });
+interface IAWInputProps {
+  label?: string;
+  name: string;
+  rules: Array<unknown> | Object;
+}
 
-const AWInput = defineComponent({
+const AWInput = defineComponent<IAWInputProps>({
   name: 'aw-input',
-  props: AWInputProps,
+  // props: AWInputProps,
   setup(props, ctx) {
-    const component = [Input, { ...props, placeholder: '请输入', required: true }];
+    const component = [AWInputWrapper];
+    // console.log(props.type, props.lazy);
     return () => (
       <Field
-        name={props.name}
-        title={props.label}
-        required={true}
-        validator={[{ min: 5, max: 10, message: '最大5，最小10' }]}
-        decorator={[FormItemWarpper]}
+        // name={props.name}
+        validator={props?.rules}
+        decorator={[FormItem]}
         component={component}
+        {...props}
       />
-      // <div>321</div>
     );
   }
 });
-const FormItemWarpper = connect(
-  FormItem,
-  mapProps(
-    {
-      title: 'label',
-      description: 'extra'
-      // required: true,
-      // validateStatus: true
-    },
-    (props, field: any) => {
-      console.log(props, field);
-      return {
-        ...props,
-        ...field.componentProps,
-        help: field.errors?.length ? field.errors : undefined
-      };
+
+// const AWInputWrapper = defineComponent({
+//   // name: 'aw-input',
+
+//   setup() {
+//     return () =>
+//       connect(
+//         AInput,
+//         // mapProps({}, (props) => {
+//         //   console.log(props);
+//         //   return props;
+//         // }),
+//         // mapReadPretty(PreviewText.Input)
+//         mapReadPretty({
+//           props: ['value'],
+//           // you need import "h" from "vue" in vue3
+//           render(h) {
+//             return h('div', ['321']);
+//           }
+//         })
+//       );
+//   }
+// });
+const AWInputWrapper = connect(
+  AInput,
+  mapReadPretty({
+    props: ['value'],
+    // you need import "h" from "vue" in vue3
+    render() {
+      return h('div', '321');
     }
-  )
+  })
 );
-// const AWInput = connect(
-//   AWInputBasic,
-//   mapProps((props: any) => {
-//     return {
-//       ...props,
-//       label: props.title
-//     };
-//   })
-// );
+
 export default ComponentUtil.withInstall(AWInput);

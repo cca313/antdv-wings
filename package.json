@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "ant-design-vue": "^3.0.0-alpha.13",
-    "vue": "^3.2.23"
+    "vue": "^3.2.23",
+    "@formily/core": "^2.0.2",
+    "@formily/vue": "^2.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

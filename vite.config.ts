@@ -2,8 +2,8 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-01 23:12:08
- * @FilePath: \vue-component-template\vite.config.ts
+ * @LastEditTime: 2021-12-05 22:41:19
+ * @FilePath: \antdv-wings\vite.config.ts
  * @Descriptions: todo
  */
 import { defineConfig } from 'vite';
