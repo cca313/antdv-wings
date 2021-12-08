@@ -2,128 +2,81 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-08 09:55:35
+ * @LastEditTime: 2021-12-08 17:52:02
  * @FilePath: \wings\examples\App.vue
  * @Descriptions: todo
 -->
 <script setup lang="ts">
 import { defineExpose, ref } from 'vue'
-import { createForm, isVoidField } from '@formily/core'
-import { FormProvider, Field, connect, mapProps, FormConsumer } from '@formily/vue'
-import { Input, Form } from 'ant-design-vue'
+// import { createForm, isVoidField } from '@formily/core'
+// import { FormProvider, Field, connect, mapProps, FormConsumer } from '@formily/vue'
+// import { Input, Form } from 'ant-design-vue'
+import { useForm, useField } from 'vee-validate';
+import { Field, Form } from "vee-validate";
+import * as yup from 'yup';
+import { AWInput } from '../packages'; ''
+
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-const form = createForm({})
-const handleClick = (args) => {
-  console.log(args);
+// const form = createForm({})
+
+// Define a validation schema
+const schema = yup.object({
+  email: yup.string().required().email(),
+  password: yup.string().required().min(8),
+});
+// Create a form context with the validation schema
+useForm({
+  validationSchema: schema,
+});
+// No need to define rules for fields
+const { value: email, errorMessage: emailError } = useField('email');
+const { value: password, errorMessage: passwordError } = useField('password');
+const customschema = yup.object({
+  // email: yup.string().required().email().label("Email address"),
+  // fullName: yup.string().required().label("Full name"),
+  // password: yup.string().required().min(6).label("Password"),
+  // terms: yup
+  //   .boolean()
+  //   .required()
+  //   .isTrue("You must agree to terms and conditions")
+  //   .label("terms agreement"),
+  // subscribed: yup
+  //   .boolean()
+  //   .required()
+  //   .isTrue("This is unusal but you have to subscribe")
+  //   .label("subscription agreement"),
+  input: yup.string().required().label("Email address"),
+});
+
+const onSubmit = (values, actions) => {
+  console.log(JSON.stringify(values, null, 2));
+  // actions.resetForm();
+  console.log(actions);
 }
-const treedata = ref([
-  {
-    label: '选项1',
-    value: 1,
-    children: [
-      {
-        title: 'Child Node1',
-        value: '0-0-0',
-        key: '0-0-0',
-      },
-      {
-        title: 'Child Node2',
-        value: '0-0-1',
-        key: '0-0-1',
-      },
-      {
-        title: 'Child Node3',
-        value: '0-0-2',
-        key: '0-0-2',
-      },
-    ],
-  },
-  {
-    label: '选项2',
-    value: 2,
-    children: [
-      {
-        title: 'Child Node3',
-        value: '0-1-0',
-        key: '0-1-0',
-      },
-      {
-        title: 'Child Node4',
-        value: '0-1-1',
-        key: '0-1-1',
-      },
-      {
-        title: 'Child Node5',
-        value: '0-1-2',
-        key: '0-1-2',
-      },
-    ],
-  },
-])
 </script>
 
 <template>
   <aw-button>custom button</aw-button>
-  <!-- <aw-table></aw-table> -->
-  <!-- <aw-input name="123" label="333"></aw-input> -->
-  <FormProvider :form="form">
-    <a-form
-      layout="horizontal"
-      :colon="false"
-      :style="{
-        // 'width': '50%',
-        'margin': 'auto'
-      }"
-    >
-      <a-space>
-        <!-- <aw-input
-          placeholder="321"
-          name="input1"
-          title="zxxx"
-          :rules="{ required: true, min: 2, max: 5 }"
-        />
-        <aw-input
-          name="input2"
-          title="ggggg"
-          :rules="{ required: true, min: 2, max: 5 }"
-          placeholder="vxcvxc"
-          initialValue="3fsdfsdf"
-        />-->
-        <!-- <aw-select
-          name="select"
-          title="fdsf"
-          :options="[{ key: 1, value: 'x' }, { key: 2, value: 'y' }]"
-        />-->
-        <aw-select
-          name="select1"
-          title="select1"
-          :options="[{ key: 0, value: '全部' }, { key: 1, value: 'x' }, { key: 2, value: 'y' }]"
-          initialValue="x"
-        />
-        <aw-select
-          name="select2"
-          title="select2"
-          :options="[{ key: 0, value: '全部' }, { key: 1, value: 'x' }, { key: 2, value: 'y' }]"
-          initialValue="x"
-        />
-        <aw-select-tree
-          name="treeselect"
-          title="treeselect"
-          :tree-data="treedata"
-          initialValue="2"
-        />
-      </a-space>
-      <FormConsumer>
-        <template #default="{ form }">
-          <div>{{ form.values }}</div>
-          <div>
-            <a-button @click="() => { form.submit(handleClick) }">submit</a-button>
-          </div>
-        </template>
-      </FormConsumer>
-    </a-form>
-  </FormProvider>
+  <div>
+    <input name="email" v-model="email" />
+    <span>{{ emailError }}</span>
+    <input name="password" v-model="password" type="password" />
+    <span>{{ passwordError }}</span>
+  </div>
+  <Form as="a-form" :validation-schema="customschema" @submit="onSubmit">
+    <!-- <Field name="input" v-slot="{ value, field, errorMessage }">
+      <a-form-item label="label-input" extra="extra描述" :help="errorMessage">
+        <a-input placeholder="placeholder" v-bind="field" :model-value="value" />
+      </a-form-item>
+      {{ field }}
+    </Field>-->
+    <!-- <aw-input name="input" label="label321" description="desccccc" /> -->
+    <AWInput name="input" label="321" />
+    <div>
+      <a-button htmlType="submit">submit</a-button>
+    </div>
+  </Form>
 </template>
 
 <style>

@@ -2,71 +2,61 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-03 08:59:23
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-07 17:49:58
+ * @LastEditTime: 2021-12-08 15:44:01
  * @FilePath: \wings\packages\components\Input\index.tsx
  * @Descriptions: todo
  */
-import { defineComponent, h, Slot, PropType } from 'vue';
+import { defineComponent, h, PropType } from 'vue';
 import ComponentUtil from '../../utils/ComponentUtil';
 import AInput from 'ant-design-vue/es/input';
-import InputProps from 'ant-design-vue/es/input/inputProps';
-import { connect, Field, mapProps, mapReadPretty } from '@formily/vue';
-import FormItem from '../FormItem';
+import AFormItem from 'ant-design-vue/es/form/FormItem';
+import { useField, Field } from 'vee-validate';
+interface IAWInputProps {
+  label: string;
+  name: string;
+}
 
-// import IAInputProps from 'ant-design-vue/es/input/inputProps';
-
-import 'ant-design-vue/es/input/style';
-import { PreviewText } from '../Preview-Text';
-import { formItemProps } from 'ant-design-vue/es/form';
-
-const AWInputProps = Object.assign({}, InputProps, formItemProps, {
-  // label: String,
-  // rules: Array || Object
-});
-// interface IAWInputProps {
-//   label?: string;
-//   name: string;
-//   rules?: Array<unknown> | Object;
-//   value: any;
-//   addonAfter?: string;
-//   addonBefore?: string;
-//   disabled?: boolean;
-//   maxLength?: number;
-//   prefix?: string | Slot;
-//   suffix?: string | Slot;
-//   size?: 'large' | 'default' | 'small';
-//   allowClear?: boolean;
-// }
-
-const AWInput = defineComponent({
-  name: 'aw-input',
-  props: AWInputProps,
-  setup(props, ctx) {
-    console.log(props);
-    const component = [AWInputWrapper, {}];
-    // console.log(props.type, props.lazy);
-    return () => (
-      <Field
-        name={props.name}
-        validator={props?.rules}
-        decorator={[FormItem]}
-        component={component}
-      />
-    );
-  }
-});
-
-// const AWInputWrapper = connect(
-//   AInput,
-//   mapReadPretty({
-//     props: ['value'],
-//     // you need import "h" from "vue" in vue3
-//     render() {
-//       return h('div', "321");
+// const AWInput = defineComponent({
+//   name: 'aw-input',
+//   inheritAttrs: false,
+//   props: {
+//     name: {
+//       type: String,
+//       required: true,
+//       default: null
+//     },
+//     label: {
+//       type: String,
+//       required: true
+//     },
+//     value: {
+//       type: String,
+//       default: ''
 //     }
-//   })
-// );
+//   },
+//   components: { AFormItem, AInput },
+//   setup(props, ctx) {
+//     console.log(props, ctx);
+//     const field = useField(props.name);
+//     const {
+//       errorMessage,
+//       handleBlur,
+//       handleChange,
+//       value: inputValue,
+//       meta: { valid }
+//     } = field;
+//     console.log(field);
+//     return () => (
+//       <AFormItem label={props.label} help={'321'} autoLink={false} extra="extra">
+//         <AInput
+//           name={props.name}
+//           value={inputValue as any}
+//           onBlur={handleBlur}
+//           onChange={handleChange}
+//         />
+//       </AFormItem>
+//     );
+//   }
+// });
 
-const AWInputWrapper = connect(AInput, mapReadPretty(PreviewText.Input));
-
-export default ComponentUtil.withInstall(AWInput);
+// export default ComponentUtil.withInstall(AWInput);

@@ -11,10 +11,12 @@
     "docs:build": "vuepress build docs"
   },
   "dependencies": {
-    "ant-design-vue": "^3.0.0-alpha.13",
-    "vue": "^3.2.23",
     "@formily/core": "^2.0.2",
-    "@formily/vue": "^2.0.2"
+    "@formily/vue": "^2.0.2",
+    "ant-design-vue": "^3.0.0-alpha.13",
+    "vee-validate": "^4.5.7",
+    "vue": "^3.2.23",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -40,10 +42,10 @@
     "vuepress": "^2.0.0-beta.27"
   },
   "peerDependencies": {
-    "ant-design-vue": "^3.0.0-alpha.13",
-    "vue": "^3.2.23",
     "@formily/core": "^2.0.2",
-    "@formily/vue": "^2.0.2"
+    "@formily/vue": "^2.0.2",
+    "ant-design-vue": "^3.0.0-alpha.13",
+    "vue": "^3.2.23"
   },
   "readme": "./docs/index.md"
 }
