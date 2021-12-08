@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-06 13:44:32
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-06 18:06:11
+ * @LastEditTime: 2021-12-07 17:53:56
  * @FilePath: \wings\packages\components\Select\index.tsx
  * @Descriptions: todo
  */
@@ -28,7 +28,10 @@ const AWSelect = defineComponent({
   props: AWSelectProps,
   setup(props) {
     console.log(props, selectProps(), 'select');
-    const component = [AWSelectWrapper];
+    const component = [
+      AWSelectWrapper,
+      { getPopupContainer: (triggerNode: any) => triggerNode.parentNode }
+    ];
     return () => (
       <Field
         name={props.name}

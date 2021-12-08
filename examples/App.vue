@@ -2,12 +2,12 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-06 17:32:04
+ * @LastEditTime: 2021-12-08 09:55:35
  * @FilePath: \wings\examples\App.vue
  * @Descriptions: todo
 -->
 <script setup lang="ts">
-import { defineExpose } from 'vue'
+import { defineExpose, ref } from 'vue'
 import { createForm, isVoidField } from '@formily/core'
 import { FormProvider, Field, connect, mapProps, FormConsumer } from '@formily/vue'
 import { Input, Form } from 'ant-design-vue'
@@ -16,8 +16,51 @@ import { Input, Form } from 'ant-design-vue'
 const form = createForm({})
 const handleClick = (args) => {
   console.log(args);
-  alert(1)
 }
+const treedata = ref([
+  {
+    label: '选项1',
+    value: 1,
+    children: [
+      {
+        title: 'Child Node1',
+        value: '0-0-0',
+        key: '0-0-0',
+      },
+      {
+        title: 'Child Node2',
+        value: '0-0-1',
+        key: '0-0-1',
+      },
+      {
+        title: 'Child Node3',
+        value: '0-0-2',
+        key: '0-0-2',
+      },
+    ],
+  },
+  {
+    label: '选项2',
+    value: 2,
+    children: [
+      {
+        title: 'Child Node3',
+        value: '0-1-0',
+        key: '0-1-0',
+      },
+      {
+        title: 'Child Node4',
+        value: '0-1-1',
+        key: '0-1-1',
+      },
+      {
+        title: 'Child Node5',
+        value: '0-1-2',
+        key: '0-1-2',
+      },
+    ],
+  },
+])
 </script>
 
 <template>
@@ -29,25 +72,24 @@ const handleClick = (args) => {
       layout="horizontal"
       :colon="false"
       :style="{
-        'width': '50%',
+        // 'width': '50%',
         'margin': 'auto'
       }"
     >
       <a-space>
-        <aw-input
+        <!-- <aw-input
+          placeholder="321"
           name="input1"
           title="zxxx"
           :rules="{ required: true, min: 2, max: 5 }"
-          placeholder="xcvxcvxc"
-          value="3fsdfsdf"
         />
         <aw-input
           name="input2"
           title="ggggg"
           :rules="{ required: true, min: 2, max: 5 }"
           placeholder="vxcvxc"
-          value="3fsdfsdf"
-        />
+          initialValue="3fsdfsdf"
+        />-->
         <!-- <aw-select
           name="select"
           title="fdsf"
@@ -56,10 +98,21 @@ const handleClick = (args) => {
         <aw-select
           name="select1"
           title="select1"
-          :options="[{ key: 1, value: 'x' }, { key: 2, value: 'y' }]"
-          value="1"
+          :options="[{ key: 0, value: '全部' }, { key: 1, value: 'x' }, { key: 2, value: 'y' }]"
+          initialValue="x"
         />
-        <a-select :options="[{ key: 1, value: 'x' }, { key: 2, value: 'y' }]" />
+        <aw-select
+          name="select2"
+          title="select2"
+          :options="[{ key: 0, value: '全部' }, { key: 1, value: 'x' }, { key: 2, value: 'y' }]"
+          initialValue="x"
+        />
+        <aw-select-tree
+          name="treeselect"
+          title="treeselect"
+          :tree-data="treedata"
+          initialValue="2"
+        />
       </a-space>
       <FormConsumer>
         <template #default="{ form }">

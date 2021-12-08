@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-03 08:59:23
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-06 17:29:45
+ * @LastEditTime: 2021-12-07 17:49:58
  * @FilePath: \wings\packages\components\Input\index.tsx
  * @Descriptions: todo
  */
@@ -23,27 +23,27 @@ const AWInputProps = Object.assign({}, InputProps, formItemProps, {
   // label: String,
   // rules: Array || Object
 });
-interface IAWInputProps {
-  label?: string;
-  name: string;
-  rules?: Array<unknown> | Object;
-  value: any;
-  addonAfter?: string;
-  addonBefore?: string;
-  disabled?: boolean;
-  maxLength?: number;
-  prefix?: string | Slot;
-  suffix?: string | Slot;
-  size?: 'large' | 'default' | 'small';
-  allowClear?: boolean;
-}
+// interface IAWInputProps {
+//   label?: string;
+//   name: string;
+//   rules?: Array<unknown> | Object;
+//   value: any;
+//   addonAfter?: string;
+//   addonBefore?: string;
+//   disabled?: boolean;
+//   maxLength?: number;
+//   prefix?: string | Slot;
+//   suffix?: string | Slot;
+//   size?: 'large' | 'default' | 'small';
+//   allowClear?: boolean;
+// }
 
 const AWInput = defineComponent({
   name: 'aw-input',
   props: AWInputProps,
   setup(props, ctx) {
-    // console.log(props);
-    const component = [AWInputWrapper];
+    console.log(props);
+    const component = [AWInputWrapper, {}];
     // console.log(props.type, props.lazy);
     return () => (
       <Field
