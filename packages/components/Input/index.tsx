@@ -2,15 +2,15 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-03 08:59:23
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-08 22:10:16
- * @FilePath: \antdv-wings\packages\components\Input\index.tsx
+ * @LastEditTime: 2021-12-09 11:18:57
+ * @FilePath: \wings\packages\components\Input\index.tsx
  * @Descriptions: todo
  */
 import { defineComponent, h } from 'vue';
 import ComponentUtil from '../../utils/ComponentUtil';
 import AInput from 'ant-design-vue/es/input';
 import AFormItem from 'ant-design-vue/es/form/FormItem';
-import { useField, Field, FieldContext } from 'vee-validate';
+import { Field, FieldContext } from 'vee-validate';
 
 const AWInput = defineComponent({
   name: 'aw-input',
@@ -18,8 +18,7 @@ const AWInput = defineComponent({
   props: {
     name: {
       type: String,
-      required: true,
-      default: null
+      required: true
     },
     label: {
       type: String,
@@ -32,18 +31,6 @@ const AWInput = defineComponent({
   },
   components: { AFormItem, AInput },
   setup(props, { slots }) {
-    // console.log(props, { slots });
-    // const field = useField(props.name);
-    // const {
-    //   errorMessage,
-    //   handleBlur,
-    //   handleChange,
-    //   value: inputValue,
-    //   meta: { valid },
-    //   errors
-    // } = field;
-    // console.log(field);
-
     return () => (
       <Field name={props.name} model-value={props.value}>
         {{

@@ -2,8 +2,8 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-08 22:42:22
- * @FilePath: \antdv-wings\examples\App.vue
+ * @LastEditTime: 2021-12-09 14:45:23
+ * @FilePath: \wings\examples\App.vue
  * @Descriptions: todo
 -->
 <script setup lang="ts">
@@ -34,6 +34,7 @@ const { value: email, errorMessage: emailError } = useField('email');
 const { value: password, errorMessage: passwordError } = useField('password');
 const customschema = yup.object({
   input: yup.string().required().label("Email address"),
+  select: yup.string().required().label('sex')
 });
 
 const onSubmit = (values, actions) => {
@@ -41,19 +42,56 @@ const onSubmit = (values, actions) => {
   // actions.resetForm();
   console.log(actions);
 }
+const treeData = [
+  {
+    title: 'parent 1',
+    value: 'parent 1',
+    children: [
+      {
+        title: 'parent 1-0',
+        value: 'parent 1-0',
+        children: [
+          {
+            title: 'my leaf',
+            value: 'leaf1',
+          },
+          {
+            title: 'your leaf',
+            value: 'leaf2',
+          },
+        ],
+      },
+      {
+        title: 'parent 1-1',
+        value: 'parent 1-1',
+      },
+    ],
+  },
+]
 </script>
 
 <template>
   <aw-button>custom button</aw-button>
-  <div>
+  <!-- <div>
     <input name="email" v-model="email" />
     <span>{{ emailError }}</span>
     <input name="password" v-model="password" type="password" />
     <span>{{ passwordError }}</span>
-  </div>
-  <Form as="a-form" :validation-schema="customschema" @submit="onSubmit">
+  </div>-->
+  <Form
+    as="a-form"
+    :wrapper-col="{ span: 12 }"
+    layout="inline"
+    :validation-schema="customschema"
+    @submit="onSubmit"
+  >
     <aw-input name="input" label="label321" value="321" description="desccccc" />
-    <!-- <AWInput name="input" label="321" /> -->
+    <aw-select
+      name="select"
+      label="select"
+      :options="[{ key: 1, label: 1, value: 11 }, { key: 2, label: 2, value: 22 }]"
+    />
+    <aw-select-tree name="select-tree" label="select-tree" value="parent 1" :tree-data="treeData" />
     <div>
       <a-button htmlType="submit">submit</a-button>
     </div>

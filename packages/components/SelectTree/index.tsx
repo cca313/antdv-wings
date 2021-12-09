@@ -2,52 +2,79 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-07 15:07:49
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-07 18:17:41
+ * @LastEditTime: 2021-12-09 14:16:13
  * @FilePath: \wings\packages\components\SelectTree\index.tsx
  * @Descriptions: todo
  */
-import { defineComponent } from 'vue';
-import ATreeSelect, { treeSelectProps } from 'ant-design-vue/es/tree-select';
-
+import { defineComponent, PropType } from 'vue';
 import ComponentUtil from '../../utils/ComponentUtil';
-import { connect, Field, mapProps } from '@formily/vue';
-import { formItemProps } from 'ant-design-vue/es/form';
-import FormItem from '../FormItem';
+import ATreeSelect from 'ant-design-vue/es/tree-select';
+import AFormItem from 'ant-design-vue/es/form/FormItem';
+import { Field, FieldContext } from 'vee-validate';
+import { OptionData } from 'ant-design-vue/es/vc-select/interface';
+import { DataNode, TreeDataNode } from 'ant-design-vue/es/vc-tree-select/interface';
 
-const AWSelectTreeProps = {
-  // treeProps: {
-  //   type: Object,
-  //   default: treeSelectProps
-  // },
-  ...treeSelectProps,
-  ...formItemProps,
-  name: {
-    type: String,
-    default: null
-  }
-};
 const AWSelectTree = defineComponent({
   name: 'aw-select-tree',
-  props: AWSelectTreeProps,
-  setup(props) {
+  inheritAttrs: false,
+  props: {
+    name: {
+      type: String,
+      required: true
+      // default: null
+    },
+    label: {
+      type: String,
+      required: true
+    },
+    value: {
+      type: String,
+      default: ''
+    },
+    treeData: {
+      type: Array as PropType<DataNode[]>,
+      required: true
+    }
+  },
+  components: { AFormItem, ATreeSelect },
+  setup(props, { slots }) {
     return () => (
-      <Field
-        name={props.name}
-        validator={props?.rules}
-        dataSource={props.treeData}
-        decorator={[FormItem]}
-        component={[
-          ATreeSelectWrapper,
-          {
-            class: 'aw-select-tree',
-            dropdownMatchSelectWidth: true
+      <Field name={props.name} model-value={props.value}>
+        {{
+          default: (slotProps: FieldContext) => {
+            const {
+              value,
+              errorMessage,
+              meta: { valid },
+              errors,
+              handleBlur,
+              handleChange
+            } = slotProps;
+            console.log(slotProps);
+            const helpMessage: any =
+              typeof errorMessage !== undefined || valid === true ? errorMessage : null;
+            const validateStatus = Array.isArray(errors) && errors.length > 0 ? 'error' : '';
+            return (
+              <AFormItem
+                label={props.label}
+                validateStatus={validateStatus}
+                help={helpMessage}
+                autoLink={false}
+                extra="extra"
+              >
+                <ATreeSelect
+                  value={value}
+                  treeData={props.treeData}
+                  onBlur={handleBlur}
+                  onChange={handleChange as any}
+                />
+              </AFormItem>
+            );
           }
-        ]}
-      />
+        }}
+      </Field>
     );
   }
 });
-
-const ATreeSelectWrapper = connect(ATreeSelect, mapProps({ dataSource: 'treeData' }));
 
 export default ComponentUtil.withInstall(AWSelectTree);
