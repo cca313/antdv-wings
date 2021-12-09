@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-09 14:45:23
+ * @LastEditTime: 2021-12-09 15:58:52
  * @FilePath: \wings\examples\App.vue
  * @Descriptions: todo
 -->
@@ -68,6 +68,40 @@ const treeData = [
     ],
   },
 ]
+const cascaderData = [
+  {
+    value: 'zhejiang',
+    label: 'Zhejiang',
+    children: [
+      {
+        value: 'hangzhou',
+        label: 'Hangzhou',
+        children: [
+          {
+            value: 'xihu',
+            label: 'West Lake',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'jiangsu',
+    label: 'Jiangsu',
+    children: [
+      {
+        value: 'nanjing',
+        label: 'Nanjing',
+        children: [
+          {
+            value: 'zhonghuamen',
+            label: 'Zhong Hua Men',
+          },
+        ],
+      },
+    ],
+  },
+]
 </script>
 
 <template>
@@ -85,6 +119,7 @@ const treeData = [
     :validation-schema="customschema"
     @submit="onSubmit"
   >
+    <!-- <Field name="input" alabel="123" value="xxx" as="aw-input" /> -->
     <aw-input name="input" label="label321" value="321" description="desccccc" />
     <aw-select
       name="select"
@@ -92,6 +127,7 @@ const treeData = [
       :options="[{ key: 1, label: 1, value: 11 }, { key: 2, label: 2, value: 22 }]"
     />
     <aw-select-tree name="select-tree" label="select-tree" value="parent 1" :tree-data="treeData" />
+    <aw-cascader name="cascader" label="cascader" :options="cascaderData" />
     <div>
       <a-button htmlType="submit">submit</a-button>
     </div>

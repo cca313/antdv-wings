@@ -2,47 +2,78 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-07 18:27:16
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-07 18:34:34
+ * @LastEditTime: 2021-12-09 15:53:37
  * @FilePath: \wings\packages\components\Cascader\index.tsx
  * @Descriptions: todo
  */
-import { defineComponent } from 'vue';
-import ACascader, { CascaderProps } from 'ant-design-vue/es/cascader';
+import { defineComponent, PropType } from 'vue';
 import ComponentUtil from '../../utils/ComponentUtil';
-import { connect, Field, mapProps } from '@formily/vue';
-import { formItemProps } from 'ant-design-vue/es/form';
-import FormItem from '../FormItem';
 
-const AWCascaderProps = {
-  ...formItemProps,
-  name: {
-    type: String,
-    default: null
-  }
-};
+import ACascader, { CascaderOptionType, CascaderProps } from 'ant-design-vue/es/cascader';
+import AFormItem from 'ant-design-vue/es/form/FormItem';
+import { Field, FieldContext } from 'vee-validate';
+import { OptionData } from 'ant-design-vue/es/vc-select/interface';
 
 const AWCascader = defineComponent({
   name: 'aw-cascader',
-  props: AWCascaderProps,
+  inheritAttrs: false,
+  props: {
+    name: {
+      type: String,
+      required: true
+      // default: null
+    },
+    label: {
+      type: String,
+      required: true
+    },
+    description: String,
+    value: {
+      type: Object
+    },
+    options: {
+      type: Array as PropType<CascaderOptionType[]>,
+      required: true
+    }
+  },
+  components: { AFormItem, ACascader },
   setup(props) {
     return () => (
-      <Field
-        name={props.name}
-        validator={props?.rules}
-        dataSource={props.options}
-        decorator={[FormItem]}
-        component={[
-          ATCascaderWrapper,
-          {
-            class: 'aw-select-tree',
-            dropdownMatchSelectWidth: true
+      <Field name={props.name} model-value={props.value}>
+        {{
+          default: (slotProps: FieldContext) => {
+            const {
+              value,
+              errorMessage,
+              meta: { valid },
+              errors,
+              handleBlur,
+              handleChange
+            } = slotProps;
+            const helpMessage: any =
+              typeof errorMessage !== undefined || valid === true ? errorMessage : null;
+            const validateStatus = Array.isArray(errors) && errors.length > 0 ? 'error' : '';
+            return (
+              <AFormItem
+                label={props.label}
+                validateStatus={validateStatus}
+                help={helpMessage}
+                autoLink={false}
+                extra="extra"
+              >
+                <ACascader
+                  value={value as any}
+                  options={props.options}
+                  onBlur={handleBlur}
+                  onChange={handleChange as any}
+                />
+              </AFormItem>
+            );
           }
-        ]}
-      />
+        }}
+      </Field>
     );
   }
 });
 
-const ATCascaderWrapper = connect(ACascader, mapProps({ dataSource: 'options' }));
-
-export default ComponentUtil.withInstall(ATCascaderWrapper);
+export default ComponentUtil.withInstall(AWCascader);

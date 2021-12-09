@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-03 08:59:23
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-09 11:18:57
+ * @LastEditTime: 2021-12-09 15:31:47
  * @FilePath: \wings\packages\components\Input\index.tsx
  * @Descriptions: todo
  */
@@ -30,7 +30,8 @@ const AWInput = defineComponent({
     }
   },
   components: { AFormItem, AInput },
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
+    console.log(props, attrs);
     return () => (
       <Field name={props.name} model-value={props.value}>
         {{
@@ -43,7 +44,6 @@ const AWInput = defineComponent({
               handleBlur,
               handleChange
             } = slotProps;
-            console.log(slotProps);
             const helpMessage: any =
               typeof errorMessage !== undefined || valid === true ? errorMessage : null;
             const validateStatus = Array.isArray(errors) && errors.length > 0 ? 'error' : '';
