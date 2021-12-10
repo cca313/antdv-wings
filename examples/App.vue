@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-09 15:58:52
+ * @LastEditTime: 2021-12-10 14:53:44
  * @FilePath: \wings\examples\App.vue
  * @Descriptions: todo
 -->
@@ -34,7 +34,8 @@ const { value: email, errorMessage: emailError } = useField('email');
 const { value: password, errorMessage: passwordError } = useField('password');
 const customschema = yup.object({
   input: yup.string().required().label("Email address"),
-  select: yup.string().required().label('sex')
+  select: yup.string().required().label('sex'),
+  checkbox: yup.array().required()
 });
 
 const onSubmit = (values, actions) => {
@@ -102,6 +103,11 @@ const cascaderData = [
     ],
   },
 ]
+const checkboxData = [
+  { label: 'Apple', value: 'Apple' },
+  { label: 'Pear', value: 'Pear' },
+  { label: 'Orange', value: 'Orange' },
+]
 </script>
 
 <template>
@@ -128,6 +134,17 @@ const cascaderData = [
     />
     <aw-select-tree name="select-tree" label="select-tree" value="parent 1" :tree-data="treeData" />
     <aw-cascader name="cascader" label="cascader" :options="cascaderData" />
+    <!-- <Field name="checkbox" :value="['Apple']" v-slot="{ value, handleChange }">
+      <a-form-item label="checkbox">
+        <a-checkbox-group :value="value" :options="checkboxData" @change="handleChange"></a-checkbox-group>
+      </a-form-item>
+    </Field>-->
+    <aw-checkbox
+      name="checkbox"
+      :value="['Apple', 'Orange']"
+      label="checkbox"
+      :options="checkboxData"
+    />
     <div>
       <a-button htmlType="submit">submit</a-button>
     </div>

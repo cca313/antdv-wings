@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-09 15:54:55
+ * @LastEditTime: 2021-12-09 16:21:29
  * @FilePath: \wings\packages\index.ts
  * @Descriptions: todo
  */
@@ -12,3 +12,4 @@ export { default as AWInput } from './components/Input';
 export { default as AWSelect } from './components/Select';
 export { default as AWSelectTree } from './components/SelectTree';
 export { default as AWCascader } from './components/Cascader';
+export { default as AWCheckbox } from './components/Checkbox';

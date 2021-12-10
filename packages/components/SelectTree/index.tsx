@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-07 15:07:49
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-09 14:16:13
+ * @LastEditTime: 2021-12-10 09:29:35
  * @FilePath: \wings\packages\components\SelectTree\index.tsx
  * @Descriptions: todo
  */
@@ -50,7 +50,6 @@ const AWSelectTree = defineComponent({
               handleBlur,
               handleChange
             } = slotProps;
-            console.log(slotProps);
             const helpMessage: any =
               typeof errorMessage !== undefined || valid === true ? errorMessage : null;
             const validateStatus = Array.isArray(errors) && errors.length > 0 ? 'error' : '';

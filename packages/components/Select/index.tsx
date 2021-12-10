@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-06 13:44:32
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-09 14:13:43
+ * @LastEditTime: 2021-12-10 09:29:28
  * @FilePath: \wings\packages\components\Select\index.tsx
  * @Descriptions: todo
  */
@@ -47,7 +47,6 @@ const AWSelect = defineComponent({
               handleBlur,
               handleChange
             } = slotProps;
-            console.log(slotProps);
             const helpMessage: any =
               typeof errorMessage !== undefined || valid === true ? errorMessage : null;
             const validateStatus = Array.isArray(errors) && errors.length > 0 ? 'error' : '';
