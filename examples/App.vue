@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-10 14:53:44
+ * @LastEditTime: 2021-12-13 17:30:07
  * @FilePath: \wings\examples\App.vue
  * @Descriptions: todo
 -->
@@ -32,11 +32,7 @@ useForm({
 // No need to define rules for fields
 const { value: email, errorMessage: emailError } = useField('email');
 const { value: password, errorMessage: passwordError } = useField('password');
-const customschema = yup.object({
-  input: yup.string().required().label("Email address"),
-  select: yup.string().required().label('sex'),
-  checkbox: yup.array().required()
-});
+
 
 const onSubmit = (values, actions) => {
   console.log(JSON.stringify(values, null, 2));
@@ -108,6 +104,11 @@ const checkboxData = [
   { label: 'Pear', value: 'Pear' },
   { label: 'Orange', value: 'Orange' },
 ]
+const customschema = yup.object({
+  input: yup.string().required().label("Email address"),
+  select: yup.string().required().label('sex'),
+  checkbox: yup.array().min(1).required()
+});
 </script>
 
 <template>
@@ -139,12 +140,7 @@ const checkboxData = [
         <a-checkbox-group :value="value" :options="checkboxData" @change="handleChange"></a-checkbox-group>
       </a-form-item>
     </Field>-->
-    <aw-checkbox
-      name="checkbox"
-      :value="['Apple', 'Orange']"
-      label="checkbox"
-      :options="checkboxData"
-    />
+    <aw-checkbox name="checkbox" label="checkbox" :options="checkboxData" />
     <div>
       <a-button htmlType="submit">submit</a-button>
     </div>
