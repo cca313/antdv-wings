@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-09 16:21:29
+ * @LastEditTime: 2021-12-14 11:13:08
  * @FilePath: \wings\packages\index.ts
  * @Descriptions: todo
  */
@@ -13,3 +13,4 @@ export { default as AWSelect } from './components/Select';
 export { default as AWSelectTree } from './components/SelectTree';
 export { default as AWCascader } from './components/Cascader';
 export { default as AWCheckbox } from './components/Checkbox';
+export { default as AWRadio } from './components/Radio';

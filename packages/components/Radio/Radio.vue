@@ -1,21 +1,20 @@
 <!--
  * @Author: Gavin Chan
- * @Date: 2021-12-13 10:24:53
+ * @Date: 2021-12-14 09:48:48
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-14 10:00:58
- * @FilePath: \wings\packages\components\Checkbox\Checkbox.vue
+ * @LastEditTime: 2021-12-14 11:51:34
+ * @FilePath: \wings\packages\components\Radio\Radio.vue
  * @Descriptions: todo
 -->
 <template>
-  <a-checkbox v-model="checked" @change="handleCheckboxChange">{{ value }}</a-checkbox>
+  <a-radio v-model="checked">{{ value }}</a-radio>
 </template>
 <script lang="ts">
-import { defineComponent, watch, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { useField } from 'vee-validate'
-import Checkbox from 'ant-design-vue/es/checkbox'
+import ARadio from 'ant-design-vue/es/radio'
 export default defineComponent({
-  name: "",
-  components: { Checkbox },
+  components: { ARadio },
   inheritAttrs: false,
   props: {
     name: {
@@ -29,7 +28,7 @@ export default defineComponent({
   },
   setup: ({ name, value }) => {
     const { checked, handleChange } = useField(name, undefined, {
-      type: 'checkbox',
+      type: 'radio',
       checkedValue: value,
     })
     const handleCheckboxChange = (checkedValue: any) => {

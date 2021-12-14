@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-09 16:17:01
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-13 17:50:09
+ * @LastEditTime: 2021-12-14 13:55:27
  * @FilePath: \wings\packages\components\Checkbox\index.tsx
  * @Descriptions: todo
  */
@@ -15,7 +15,6 @@ import { OptionData } from 'ant-design-vue/es/vc-select/interface';
 import { CheckboxValueType } from 'ant-design-vue/lib/checkbox/Group';
 import { CheckboxOptionType } from 'ant-design-vue/es/checkbox/Group';
 import Checkbox from './Checkbox.vue';
-const ACheckboxGroup = ACheckbox.Group;
 const AWCheckbox = defineComponent({
   name: 'aw-checkbox',
   inheritAttrs: false,
@@ -36,19 +35,9 @@ const AWCheckbox = defineComponent({
       type: Array
     }
   },
-  components: { AFormItem, ACheckboxGroup },
+  components: { AFormItem },
   setup(props, { slots }) {
     return () => {
-      // console.log(props.value);
-      // const errorMsg = useFieldError(props.name);
-      // const isValid = useIsFieldValid(props.name);
-      // const errorMsg = useFieldError('checkbox');
-      // const isValid = useIsFieldValid('checkbox');
-      // console.log(errorMsg, isValid);
-      // const helpMessage: any =
-      //   typeof errorMsg.value !== undefined || isValid.value === true ? errorMsg.value : null;
-      // const validateStatus =
-      //   typeof errorMsg.value === undefined || isValid.value === false ? 'error' : '';
       return (
         <AFormItem
           label={props.label}

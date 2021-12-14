@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-13 17:30:07
+ * @LastEditTime: 2021-12-14 17:01:50
  * @FilePath: \wings\examples\App.vue
  * @Descriptions: todo
 -->
@@ -107,7 +107,8 @@ const checkboxData = [
 const customschema = yup.object({
   input: yup.string().required().label("Email address"),
   select: yup.string().required().label('sex'),
-  checkbox: yup.array().min(1).required()
+  checkbox: yup.array().min(1).required(),
+  radio: yup.string().required()
 });
 </script>
 
@@ -141,6 +142,12 @@ const customschema = yup.object({
       </a-form-item>
     </Field>-->
     <aw-checkbox name="checkbox" label="checkbox" :options="checkboxData" />
+    <aw-radio
+      name="radio"
+      label="radio"
+      :value="1"
+      :options="[{ label: 'A', value: 1 }, { label: 'B', value: 2 }]"
+    />
     <div>
       <a-button htmlType="submit">submit</a-button>
     </div>
