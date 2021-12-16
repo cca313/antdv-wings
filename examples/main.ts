@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 17:41:30
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-16 10:10:20
+ * @LastEditTime: 2021-12-16 17:02:22
  * @FilePath: \wings\examples\main.ts
  * @Descriptions: todo
  */
@@ -17,7 +17,8 @@ import {
   AWCascader,
   AWCheckbox,
   AWRadio,
-  AWDatePicker
+  AWDatePicker,
+  AWRangePicker
 } from '../packages';
 // import * as aw from '../packages';
 import * as antdv from 'ant-design-vue';
@@ -35,6 +36,7 @@ app.use(AWCascader);
 app.use(AWCheckbox);
 app.use(AWRadio);
 app.use(AWDatePicker);
+app.use(AWRangePicker);
 app.use(antdv);
 
 app.mount('#app');

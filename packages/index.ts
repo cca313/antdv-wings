@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-16 10:09:41
+ * @LastEditTime: 2021-12-16 17:01:11
  * @FilePath: \wings\packages\index.ts
  * @Descriptions: todo
  */
@@ -15,3 +15,4 @@ export { default as AWCascader } from './components/Cascader';
 export { default as AWCheckbox } from './components/Checkbox';
 export { default as AWRadio } from './components/Radio';
 export { default as AWDatePicker } from './components/DatePicker';
+export { default as AWRangePicker } from './components/RangePicker';

@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-16 16:23:42
+ * @LastEditTime: 2021-12-16 17:06:29
  * @FilePath: \wings\examples\App.vue
  * @Descriptions: todo
 -->
@@ -109,6 +109,7 @@ const customschema = yup.object({
   cascader: null
 });
 const datepickerValue = dayjs().format("YYYY-MM-DD HH:mm:ss")
+const rangepickerValue = undefined
 </script>
 
 <template>
@@ -147,6 +148,7 @@ const datepickerValue = dayjs().format("YYYY-MM-DD HH:mm:ss")
       :options="[{ label: 'A', value: 1 }, { label: 'B', value: 2 }]"
     />
     <aw-datepicker name="datepicker" label="datepicker" :show-time="true" :value="datepickerValue" />
+    <aw-rangepicker name="rangepicker" label="rangepicker" />
     <!-- </a-col> -->
     <!-- </a-row> -->
     <!-- <Field name="input" alabel="123" value="xxx" as="aw-input" /> -->

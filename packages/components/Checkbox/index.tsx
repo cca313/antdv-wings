@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-09 16:17:01
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-14 13:55:27
+ * @LastEditTime: 2021-12-16 16:41:38
  * @FilePath: \wings\packages\components\Checkbox\index.tsx
  * @Descriptions: todo
  */
@@ -11,9 +11,9 @@ import ComponentUtil from '../../utils/ComponentUtil';
 import ACheckbox from 'ant-design-vue/es/checkbox';
 import AFormItem from 'ant-design-vue/es/form/FormItem';
 import { ErrorMessage, Field, FieldContext, useFieldError, useIsFieldValid } from 'vee-validate';
-import { OptionData } from 'ant-design-vue/es/vc-select/interface';
-import { CheckboxValueType } from 'ant-design-vue/lib/checkbox/Group';
-import { CheckboxOptionType } from 'ant-design-vue/es/checkbox/Group';
+// import { OptionData } from 'ant-design-vue/es/vc-select/interface';
+// import { CheckboxValueType } from 'ant-design-vue/lib/checkbox/Group';
+// import { CheckboxOptionType } from 'ant-design-vue/es/checkbox/Group';
 import Checkbox from './Checkbox.vue';
 const AWCheckbox = defineComponent({
   name: 'aw-checkbox',
@@ -41,13 +41,7 @@ const AWCheckbox = defineComponent({
       return (
         <AFormItem
           label={props.label}
-          help={
-            <ErrorMessage
-              class="ant-form-item-explain-error"
-              style={{ color: '#ff4d4f' }}
-              name={props.name}
-            />
-          }
+          help={<ErrorMessage style={{ color: '#ff4d4f' }} name={props.name} /> || ''}
           autoLink={false}
           extra="extra"
         >
