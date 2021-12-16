@@ -2,23 +2,19 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-14 17:01:50
+ * @LastEditTime: 2021-12-16 16:23:42
  * @FilePath: \wings\examples\App.vue
  * @Descriptions: todo
 -->
 <script setup lang="ts">
-import { defineExpose, ref } from 'vue'
-// import { createForm, isVoidField } from '@formily/core'
-// import { FormProvider, Field, connect, mapProps, FormConsumer } from '@formily/vue'
-// import { Input, Form } from 'ant-design-vue'
 import { useForm, useField } from 'vee-validate';
 import { Field, Form } from "vee-validate";
 import * as yup from 'yup';
-// import { AWInput } from '../packages'; 
+import dayjs, { Dayjs } from 'dayjs'
+import 'dayjs/locale/zh-cn' // import locale
+dayjs.locale('zh-cn');
+import { ref } from '@vue/reactivity';
 
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-// const form = createForm({})
 
 // Define a validation schema
 const schema = yup.object({
@@ -108,8 +104,11 @@ const customschema = yup.object({
   input: yup.string().required().label("Email address"),
   select: yup.string().required().label('sex'),
   checkbox: yup.array().min(1).required(),
-  radio: yup.string().required()
+  radio: yup.string().required(),
+  datepicker: yup.string().required(),
+  cascader: null
 });
+const datepickerValue = dayjs().format("YYYY-MM-DD HH:mm:ss")
 </script>
 
 <template>
@@ -122,12 +121,14 @@ const customschema = yup.object({
   </div>-->
   <Form
     as="a-form"
-    :wrapper-col="{ span: 12 }"
     layout="inline"
+    class="form"
     :validation-schema="customschema"
+    :initial-values="{}"
     @submit="onSubmit"
   >
-    <!-- <Field name="input" alabel="123" value="xxx" as="aw-input" /> -->
+    <!-- <a-row> -->
+    <!-- <a-col :span="12"> -->
     <aw-input name="input" label="label321" value="321" description="desccccc" />
     <aw-select
       name="select"
@@ -136,11 +137,8 @@ const customschema = yup.object({
     />
     <aw-select-tree name="select-tree" label="select-tree" value="parent 1" :tree-data="treeData" />
     <aw-cascader name="cascader" label="cascader" :options="cascaderData" />
-    <!-- <Field name="checkbox" :value="['Apple']" v-slot="{ value, handleChange }">
-      <a-form-item label="checkbox">
-        <a-checkbox-group :value="value" :options="checkboxData" @change="handleChange"></a-checkbox-group>
-      </a-form-item>
-    </Field>-->
+    <!-- </a-col> -->
+    <!-- <a-col :span="12"> -->
     <aw-checkbox name="checkbox" label="checkbox" :options="checkboxData" />
     <aw-radio
       name="radio"
@@ -148,13 +146,24 @@ const customschema = yup.object({
       :value="1"
       :options="[{ label: 'A', value: 1 }, { label: 'B', value: 2 }]"
     />
+    <aw-datepicker name="datepicker" label="datepicker" :show-time="true" :value="datepickerValue" />
+    <!-- </a-col> -->
+    <!-- </a-row> -->
+    <!-- <Field name="input" alabel="123" value="xxx" as="aw-input" /> -->
+
+    <!-- <Field name="checkbox" :value="['Apple']" v-slot="{ value, handleChange }">
+      <a-form-item label="checkbox">
+        <a-checkbox-group :value="value" :options="checkboxData" @change="handleChange"></a-checkbox-group>
+      </a-form-item>
+    </Field>-->
+
     <div>
       <a-button htmlType="submit">submit</a-button>
     </div>
   </Form>
 </template>
 
-<style>
+<style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -162,5 +171,10 @@ const customschema = yup.object({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.form {
+  display: grid !important;
+  grid-template-columns: repeat(3, 400px);
+  grid-template-rows: repeat(3, 80px);
 }
 </style>

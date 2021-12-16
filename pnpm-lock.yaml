@@ -16,6 +16,7 @@ specifiers:
   '@vue/eslint-config-typescript': ~7.0.0
   '@vuepress/bundler-vite': ^2.0.0-beta.27
   ant-design-vue: ^3.0.0-alpha.13
+  dayjs: ^1.10.7
   eslint: ^7.32.0
   eslint-plugin-import: ^2.24.1
   eslint-plugin-vue: ~7.16.0
@@ -33,6 +34,7 @@ dependencies:
   '@formily/core': 2.0.3
   '@formily/vue': 2.0.3_typescript@4.4.2+vue@3.2.23
   ant-design-vue: 3.0.0-alpha.13_56e8154147202fd925605f14466acee9
+  dayjs: 1.10.7
   vee-validate: 4.5.7_vue@3.2.23
   vue: 3.2.23
   yup: 0.32.11
@@ -1725,7 +1727,7 @@ packages:
       '@vue/compiler-sfc': 3.2.6
       array-tree-filter: registry.nlark.com/array-tree-filter/2.1.0
       async-validator: 4.0.7
-      dayjs: registry.nlark.com/dayjs/1.10.7
+      dayjs: 1.10.7
       dom-align: registry.nlark.com/dom-align/1.12.2
       dom-scroll-into-view: registry.nlark.com/dom-scroll-into-view/2.0.1
       lodash: registry.nlark.com/lodash/4.17.21
@@ -2281,6 +2283,10 @@ packages:
 
   /csstype/2.6.17:
     resolution: {integrity: sha1-TPMOuH4dGgBdi2UQ+VKSQT9qHA4=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/csstype/download/csstype-2.6.17.tgz?cache=0&sync_timestamp=1637224567041&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcsstype%2Fdownload%2Fcsstype-2.6.17.tgz}
+
+  /dayjs/1.10.7:
+    resolution: {integrity: sha1-LPX5Gt0oEWdIRAhmoKHSbzps5Gg=, tarball: dayjs/download/dayjs-1.10.7.tgz}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -6340,12 +6346,6 @@ packages:
     dependencies:
       is-what: 3.14.1
     dev: true
-
-  registry.nlark.com/dayjs/1.10.7:
-    resolution: {integrity: sha1-LPX5Gt0oEWdIRAhmoKHSbzps5Gg=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/dayjs/download/dayjs-1.10.7.tgz}
-    name: dayjs
-    version: 1.10.7
-    dev: false
 
   registry.nlark.com/dom-align/1.12.2:
     resolution: {integrity: sha1-D4Fk69DJwhsMeQMQSTzYVYkqzUs=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/dom-align/download/dom-align-1.12.2.tgz}

@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-14 10:02:31
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-14 16:58:03
+ * @LastEditTime: 2021-12-15 16:58:23
  * @FilePath: \wings\packages\components\Radio\index.tsx
  * @Descriptions: todo
  */
@@ -30,7 +30,7 @@ const AWRadio = defineComponent({
       type: Array,
       required: true
     },
-    value: String
+    value: [String, Number]
   },
   setup({ name, label, value, options }) {
     return () => {
