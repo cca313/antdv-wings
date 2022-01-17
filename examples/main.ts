@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 17:41:30
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-16 17:02:22
+ * @LastEditTime: 2022-01-17 09:55:01
  * @FilePath: \wings\examples\main.ts
  * @Descriptions: todo
  */
@@ -11,7 +11,7 @@ import App from './App.vue';
 import {
   AWButton,
   AWInput,
-  AWTable,
+  // AWTable,
   AWSelect,
   AWSelectTree,
   AWCascader,
@@ -28,7 +28,7 @@ import '../packages/index.less';
 const app = createApp(App);
 
 app.use(AWButton);
-app.use(AWTable);
+// app.use(AWTable);
 app.use(AWInput);
 app.use(AWSelect);
 app.use(AWSelectTree);

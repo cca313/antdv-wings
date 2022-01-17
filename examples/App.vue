@@ -2,7 +2,7 @@
  * @Author: Gavin Chan
  * @Date: 2021-12-01 20:54:06
  * @LastEditors: Gavin
- * @LastEditTime: 2021-12-16 17:06:29
+ * @LastEditTime: 2022-01-17 10:23:36
  * @FilePath: \wings\examples\App.vue
  * @Descriptions: todo
 -->
@@ -13,7 +13,6 @@ import * as yup from 'yup';
 import dayjs, { Dayjs } from 'dayjs'
 import 'dayjs/locale/zh-cn' // import locale
 dayjs.locale('zh-cn');
-import { ref } from '@vue/reactivity';
 
 
 // Define a validation schema
@@ -106,10 +105,51 @@ const customschema = yup.object({
   checkbox: yup.array().min(1).required(),
   radio: yup.string().required(),
   datepicker: yup.string().required(),
+  rangepicker: yup.array().length(2).required(),
   cascader: null
 });
 const datepickerValue = dayjs().format("YYYY-MM-DD HH:mm:ss")
 const rangepickerValue = undefined
+const columns = [
+  {
+    title: '职位代码',
+    dataIndex: 'code',
+    // width: 160,
+    ellipsis: true,
+  },
+  {
+    title: '职位名称',
+    dataIndex: 'name',
+    // width: 180,
+    ellipsis: true,
+  },
+  {
+    title: '单位代码',
+    dataIndex: 'unitCode',
+    // width: 160,
+    ellipsis: true,
+  },
+  {
+    title: '单位名称',
+    dataIndex: 'unitName',
+    // width: 180,
+    ellipsis: true,
+  },
+  {
+    title: '招录人数',
+    dataIndex: 'recruits',
+    // width: 140,
+    align: 'center',
+    ellipsis: true,
+  },
+  {
+    title: '创建时间',
+    dataIndex: 'createTime',
+    align: 'center',
+    ellipsis: true,
+  },
+
+]
 </script>
 
 <template>
@@ -163,6 +203,7 @@ const rangepickerValue = undefined
       <a-button htmlType="submit">submit</a-button>
     </div>
   </Form>
+  <!-- <aw-table :columns="columns" /> -->
 </template>
 
 <style lang="less">
